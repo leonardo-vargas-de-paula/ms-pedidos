@@ -1,5 +1,6 @@
 package com.mcteste.ms_pedidos.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -10,27 +11,28 @@ public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String descricao;
 
     @OneToMany(mappedBy="pedido", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<ItemPedido> itens;
 
     public Pedido() {
     }
 
-    public Pedido(List<ItemPedido> itens, String descricao, long id) {
+    public Pedido(List<ItemPedido> itens, String descricao, Long id) {
         this.itens = itens;
         this.descricao = descricao;
         this.id = id;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
