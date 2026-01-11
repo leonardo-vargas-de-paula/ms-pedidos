@@ -27,7 +27,7 @@ public class PedidoController {
     @PostMapping
     public String criarPedido(@RequestBody Pedido pedido){
         Pedido pedidoSalvo = pedidoService.salvarPedido(pedido);
-        rabbitTemplate.convertAndSend("",routingKey,pedidoSalvo.getDescricao());
+        rabbitTemplate.convertAndSend("",routingKey,pedidoSalvo);
 
         return "Descrição pedido: " + pedido.getDescricao();
     }
